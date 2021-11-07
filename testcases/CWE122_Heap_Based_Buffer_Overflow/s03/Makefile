@@ -1,8 +1,8 @@
-CC=/usr/bin/gcc
-CPP=/usr/bin/g++
+CC=/home/pingjui/parallel-shadow-stack/llvm-project-13.0.0.src/build/bin/clang
+CPP=/usr/bin/clang++
 DEBUG=-g
 CFLAGS=-c
-LFLAGS=-lpthread -lm
+LFLAGS=-lpthread -lm -L/home/pingjui/parallel-shadow-stack/lib -lShadowStack -Wl,-rpath,/home/pingjui/parallel-shadow-stack/lib
 LD=ld
 INCLUDE_MAIN=-DINCLUDEMAIN
 
