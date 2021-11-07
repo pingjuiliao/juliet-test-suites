@@ -13,13 +13,16 @@ sys.path.append("..")
 import py_common
 
 import update_main_cpp_and_testcases_h
+SS_ROOT  = "/home/pingjui/parallel-shadow-stack"
+SS_CLANG = SS_ROOT + "/llvm-project-13.0.0.src/build/bin/clang"
+SS_LIB   = SS_ROOT + "/lib"
 
 def create_makefile(cwe, is_dir_split):
 	contents = ""
-	contents += "CC=/usr/bin/gcc\n"
-	contents += "CPP=/usr/bin/g++\n"
+	contents += "CC=%s\n" % SS_CLANG
+	contents += "CPP=/usr/bin/clang++\n" ## clang-10 up
 	contents += "DEBUG=-g\n"
-	contents += "CFLAGS=-c\n"
+	contents += "CFLAGS=-c -L%s -lShadowStack -Wl,-rpath,%s\n" % (SS_LIB, SS_LIB)
 	contents += "LFLAGS=-lpthread -lm\n"
 	contents += "LD=ld\n"
 	contents += "INCLUDE_MAIN=-DINCLUDEMAIN\n"
