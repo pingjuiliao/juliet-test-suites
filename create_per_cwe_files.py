@@ -22,8 +22,8 @@ def create_makefile(cwe, is_dir_split):
 	contents += "CC=%s\n" % SS_CLANG
 	contents += "CPP=/usr/bin/clang++\n" ## clang-10 up
 	contents += "DEBUG=-g\n"
-	contents += "CFLAGS=-c\n"
-	contents += "LFLAGS=-lpthread -lm -L%s -lShadowStack -Wl,-rpath,%s\n"  % (SS_LIB, SS_LIB)
+	contents += "CFLAGS=-c -L%s -lShadowStack -Wl,-rpath,%s\n" % (SS_LIB, SS_LIB)
+	contents += "LFLAGS=-lpthread -lm\n"
 	contents += "LD=ld\n"
 	contents += "INCLUDE_MAIN=-DINCLUDEMAIN\n"
 
