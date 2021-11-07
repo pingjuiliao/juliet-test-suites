@@ -9,5 +9,5 @@ We are only interested in return address overwrite
 
 - O: shadow stack correctly protects 
 - !: needs source code modification to handle it
-- X: 
+- X: conceptually impossible to overwrite return addresses 
 
