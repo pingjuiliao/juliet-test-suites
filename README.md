@@ -8,7 +8,7 @@ We are only interested in return address overwrite
 make individual
 ```
 
-#Results:
+# Results:
 | Sink ID | status|reason/required operation if 'O' |
 |--------|-------|----------|
 | char_type_overrun_memcpy  |!| printLine() called with a overwritten buf ptr|
@@ -86,7 +86,7 @@ make individual
 | src_char_declare_cat        |!| dst buffer allocated after large src buffer |
 | src_char_declare_cpy        |!| dst buffer allocated after large src buffer |
 
-#Rules:
+# Rules:
 - CWE129: arbitrary write
 - CWE805: sequential buffer overflow (choosing wrong buffer)
 - CWE806: sequential buffer overflow (wrong size)
@@ -94,19 +94,20 @@ make individual
 - *_declare_*: char[]
 - _wchar_    : for windows, not handled in linux perhaps
 - *_01~84_*  : often, 1~68 is .c, 70~ is .cpp file, 
-#Status:   
+
+# Status:   
 - O: shadow stack correctly protects return address 
 - !: needs source code modification to handle it
 - C: compiler issue: it's now impossible to overwrite retaddr due to compiler
 - X: conceptually impossible to overwrite return addresses 
-#Conclusion
+
+# Conclusion
 many testcases cannot survive the function call because the stack buffer overflow overwrites critical data.
 
 
 ## Other potential errors
-|Interested?|Name|What is it about ?| 
+|Interested?|Name| Reason | 
 |-----------|----|------------------|
-|X|CWE562_Return_of_Stack_Variable_address| return a stack allocated buf/struct|
-|X|CWE680_Integer_Overflow_to_Buffer_Overflow| cause malloc/new with wrong size|
-
+|X|CWE562_Return_of_Stack_Variable_address| it's about returning a stack allocated buf/struct|
+|X|CWE680_Integer_Overflow_to_Buffer_Overflow| malloc/new operation are exclusively included in this class|
 
