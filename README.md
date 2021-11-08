@@ -2,13 +2,14 @@
 We are only interested in return address overwrite
 
 ## CWE121: Stack_Based_Buffer_Overflow
-#how I run each testcase
+
+###how I run each testcase
 ```
 # in each directory: e.g <repo>/testcases/CWE121/s01 
 make individual
 ```
 
-# Results:
+### Results:
 | Sink ID | status|reason/required operation if 'O' |
 |--------|-------|----------|
 | char_type_overrun_memcpy  |!| printLine() called with a overwritten buf ptr|
@@ -86,7 +87,7 @@ make individual
 | src_char_declare_cat        |!| dst buffer allocated after large src buffer |
 | src_char_declare_cpy        |!| dst buffer allocated after large src buffer |
 
-# Rules:
+### Rules:
 - CWE129: arbitrary write
 - CWE805: sequential buffer overflow (choosing wrong buffer)
 - CWE806: sequential buffer overflow (wrong size)
@@ -95,13 +96,13 @@ make individual
 - _wchar_    : for windows, not handled in linux perhaps
 - *_01~84_*  : often, 1~68 is .c, 70~ is .cpp file, 
 
-# Status:   
+### Status:   
 - O: shadow stack correctly protects return address 
 - !: needs source code modification to handle it
 - C: compiler issue: it's now impossible to overwrite retaddr due to compiler
 - X: conceptually impossible to overwrite return addresses 
 
-# Conclusion
+### Conclusion
 many testcases cannot survive the function call because the stack buffer overflow overwrites critical data.
 
 
