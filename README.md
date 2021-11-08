@@ -44,15 +44,39 @@ We are only interested in return address overwrite
 | CWE805_int64_t_declare_loop   |!| printLongLongLine() called with a overwritten pointer |
 | CWE805_int64_t_declare_memcpy |!| printLongLongLine() called with a overwritten pointer |
 | CWE805_int64_t_declare_memmove|!| printLongLongLine() called with a overwritten pointer |
-| CWE805_int_alloca_loop     |C| enough stack space/ infinite loop (overflowed data)|
-| CWE805_int_alloca_memcpy   |C| enough stack space |
-| CWE805_int_alloca_memmove  |C| enough stack space |
-| CWE805_int_declare_loop    |!| printIntLine() called with a overwritten pointer |
-| CWE805_int_declare_memcpy  |!| printIntLine() called with a overwritten pointer |
-| CWE805_int_declare_memmove |!| printIntLine() called with a overwritten pointer |
-| CWE805_struct_alloca_loop  |C| enough stack space/infinite loop (overflowed data) |
-| CWE805_struct_alloca_memcpy|C| enough stack space    |
-
+| CWE805_int_alloca_loop       |C| enough stack space/ infinite loop (overflowed data)|
+| CWE805_int_alloca_memcpy     |C| enough stack space |
+| CWE805_int_alloca_memmove    |C| enough stack space |
+| CWE805_int_declare_loop      |!| printIntLine() called with a overwritten pointer |
+| CWE805_int_declare_memcpy    |!| printIntLine() called with a overwritten pointer |
+| CWE805_int_declare_memmove   |!| printIntLine() called with a overwritten pointer |
+| CWE805_struct_alloca_loop    |C| enough stack space/infinite loop (overflowed data) |
+| CWE805_struct_alloca_memcpy  |C| enough stack space    |
+| CWE805_struct_alloca_memmove |C| enough stack space    |
+| CWE805_struct_declare_loop    |!| printStructLine() called with an overwritten pointer |
+| CWE805_struct_declare_memcpy  |!| printStructLine() called with an overwritten pointer |
+| CWE805_struct_declare_memmove |!| printStructLine() called with an overwritten pointer |
+| CWE806_char_alloca_loop     |!| printLine() called with an overwritten pointer |
+| CWE806_char_alloca_memcpy   |!| printLine() called with an overwritten pointer |
+| CWE806_char_alloca_memmove  |!| printLine() called with an overwritten pointer |
+| CWE806_char_alloca_ncat     |!| printLine() called with an overwritten pointer |
+| CWE806_char_alloca_ncpy     |!| printLine() called with an overwritten pointer |
+| CWE806_char_alloca_snprintf |!| printLine() called with an overwritten pointer |
+| CWE806_char_declare_loop    |!| dst buffer allocated after large src buffer |
+| CWE806_char_declare_memcpy  |!| dst buffer allocated after large src buffer |
+| CWE806_char_declare_memmove |!| dst buffer allocated after large src buffer |
+| CWE806_char_declare_ncat    |!| dst buffer allocated after large src buffer |
+| CWE806_char_declare_ncpy    |!| dst buffer allocated after large src buffer |
+| CWE806_char_declare_snprintf|!| dst buffer allocated after large src buffer |
+| dest_char_alloca_cat        |C| enough stack space                          |
+| dest_char_alloca_cpy        |C| enough stack space                          |
+| dest_char_declare_cat       |!| printLine() called with an overwritten pointer |
+| dest_char_declare_cpy       |!| printLine() called with an overwritten pointer |
+| placement_new_alloca        |!| class size not large enough                 |
+| placement_new_declare       |!| class size not large enough                 |
+| src_char_alloca_cat         |!| printLine() called with an overwritten pointer |
+| src_char_alloca_cpy         |!| printLine() called with an overwritten pointer |
+| src_char_declare_cat        |!| dst buffer allocated after large src buffer |
 
 - O: shadow stack correctly protects return address 
 - !: needs source code modification to handle it
