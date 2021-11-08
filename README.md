@@ -2,6 +2,13 @@
 We are only interested in return address overwrite
 
 ## CWE121: Stack_Based_Buffer_Overflow
+#how I run each testcase
+```
+# in each directory: e.g <repo>/testcases/CWE121/s01 
+make individual
+```
+
+#Results:
 | Sink ID | status|reason/required operation if 'O' |
 |--------|-------|----------|
 | char_type_overrun_memcpy  |!| printLine() called with a overwritten buf ptr|
@@ -72,14 +79,34 @@ We are only interested in return address overwrite
 | dest_char_alloca_cpy        |C| enough stack space                          |
 | dest_char_declare_cat       |!| printLine() called with an overwritten pointer |
 | dest_char_declare_cpy       |!| printLine() called with an overwritten pointer |
-| placement_new_alloca        |!| class size not large enough                 |
-| placement_new_declare       |!| class size not large enough                 |
+| placement_new_alloca        |!| class size not large enough/ cpp            |
+| placement_new_declare       |!| class size not large enough/ cpp            |
 | src_char_alloca_cat         |!| printLine() called with an overwritten pointer |
 | src_char_alloca_cpy         |!| printLine() called with an overwritten pointer |
 | src_char_declare_cat        |!| dst buffer allocated after large src buffer |
+| src_char_declare_cpy        |!| dst buffer allocated after large src buffer |
 
+#Rules:
+- CWE129: arbitrary write
+- CWE805: sequential buffer overflow (choosing wrong buffer)
+- CWE806: sequential buffer overflow (wrong size)
+- *_alloca_* : depreciated alloca() function, compiler tends to allocate enough stack space to handle it 
+- *_declare_*: char[]
+- _wchar_    : for windows, not handled in linux perhaps
+- *_01~84_*  : often, 1~68 is .c, 70~ is .cpp file, 
+#Status:   
 - O: shadow stack correctly protects return address 
 - !: needs source code modification to handle it
 - C: compiler issue: it's now impossible to overwrite retaddr due to compiler
 - X: conceptually impossible to overwrite return addresses 
+#Conclusion
+many testcases cannot survive the function call because the stack buffer overflow overwrites critical data.
+
+
+## Other potential errors
+|Interested?|Name|What is it about ?| 
+|-----------|----|------------------|
+|X|CWE562_Return_of_Stack_Variable_address| return a stack allocated buf/struct|
+|X|CWE680_Integer_Overflow_to_Buffer_Overflow| cause malloc/new with wrong size|
+
 
